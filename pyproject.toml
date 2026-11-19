@@ -1,0 +1,65 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "agent-zk-trace-verifier"
+version = "0.1.0"
+description = "Zero-Knowledge Trajectory Integrity & Execution Trace Verification for Autonomous AI Agent Swarms"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+    { name = "Lakshitha Dananjaya", email = "dananjayarox01@gmail.com" },
+]
+keywords = [
+    "zero-knowledge",
+    "zk-proofs",
+    "ai-agents",
+    "autonomous-swarms",
+    "execution-trace",
+    "cryptography",
+    "pedersen-commitments",
+    "fiat-shamir",
+    "mcp",
+    "auditability",
+    "privacy-preserving",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: System :: Distributed Computing",
+    "Topic :: Security :: Cryptography",
+]
+dependencies = [
+    "cryptography>=41.0.0",
+    "click>=8.0.0",
+    "rich>=12.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "pytest-asyncio>=0.20.0",
+]
+
+[project.scripts]
+agent-zk = "agent_zk_verifier.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["agent_zk_verifier"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --strict-markers"
